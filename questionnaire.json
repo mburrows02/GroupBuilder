@@ -1,6 +1,12 @@
 {
 	"questions":[
 		{
+			"text":"Name",
+			"type":"s",
+			"minBestAgreementCount":0,
+			"answers":[]
+		},
+		{
 			"text":"Skills",
 			"type":"c",
 			"minBestAgreementCount":0,

@@ -62,3 +62,7 @@ $RECYCLE.BIN/
 # ========================
 
 .metadata
+.recommenders
+*.classpath
+*.settings
+*.project
