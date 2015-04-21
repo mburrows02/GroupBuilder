@@ -60,10 +60,6 @@ public class Group {
 						minValue = ans;
 					}
 				}
-				long spread = maxValue - minValue;
-				while (spread > 5) {
-					spread /= 5;
-				}
 				conflictPoints += maxValue - minValue;
 			} else if (question.getAnswers() != null){
 				for (Answer answer : question.getAnswers()) {
