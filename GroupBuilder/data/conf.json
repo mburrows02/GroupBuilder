@@ -1,0 +1,6 @@
+{
+	"questions":"data\\questionnaire.json",
+	"responses":"data\\answers.csv",
+	"minGroupSize":"3",
+	"maxGroupSize":"4"
+}

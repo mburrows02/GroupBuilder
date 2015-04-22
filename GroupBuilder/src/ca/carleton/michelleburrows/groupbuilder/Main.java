@@ -20,7 +20,6 @@ import org.jgap.Genotype;
 import org.jgap.IChromosome;
 import org.jgap.InvalidConfigurationException;
 import org.jgap.Population;
-import org.jgap.impl.CrossoverOperator;
 import org.jgap.impl.DefaultConfiguration;
 import org.jgap.impl.StringGene;
 import org.jgap.impl.SwappingMutationOperator;
@@ -31,17 +30,18 @@ import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
 public class Main {
-	private static String CONF_FILE = "..\\conf.json";
+	private static String CONF_FILE = "data\\conf.json";
 	private static String QUESTIONNAIRE_FILE = "";
 	private static String ANSWERS_FILE = "";
 	public static int MIN_GROUP_SIZE = 0;
 	public static int MAX_GROUP_SIZE = 0;
 	public static int MAX_GROUPS = 0;
-	private static int MAX_GEN = 1000000;
-	private static int POP_SIZE = 50000;
+	private static int MAX_GEN = 50;
+	private static int POP_SIZE = 10;
 	private static int TOURNAMENT_SIZE = 5;
 	private static double TOURNAMENT_PROB = 0.4;
-	private static boolean stats = true;
+	private static double XOVER_RATE = 0.9;
+	private static boolean stats = false;
 	
 	public static void main(String args[]) {
 		setup();
@@ -136,7 +136,7 @@ public class Main {
 		Configuration.reset();
 		Configuration conf = new DefaultConfiguration();
 		conf.getGeneticOperators().clear();
-		conf.addGeneticOperator(new CrossoverOperator(conf));
+		conf.addGeneticOperator(new PermutationCrossover(conf, XOVER_RATE));
 		conf.addGeneticOperator(new SwappingMutationOperator(conf));
 		TournamentSelector tournament = new TournamentSelector(conf, TOURNAMENT_SIZE, TOURNAMENT_PROB);
 		conf.addNaturalSelector(tournament, false);
@@ -162,6 +162,7 @@ public class Main {
 				bestSolution = bestInGen;
 				oldBestFit = bestFit;
 			}
+			population.evolve();
 		}
 		return fitFunc.chromosomeToState(bestSolution);
 	}

@@ -8,6 +8,7 @@ import org.jgap.FitnessFunction;
 import org.jgap.IChromosome;
 
 public class GroupFitnessFunction extends FitnessFunction {
+	private static final long serialVersionUID = 8922877956164654450L;
 	private final Question[] questionnaire;
 	private final Map<String, Student> studentMap;
 	private final int groupSize;
